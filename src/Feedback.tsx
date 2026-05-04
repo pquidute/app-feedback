@@ -3,6 +3,7 @@ import { DocumentHandle } from "@sanity/sdk-react";
 import { Card, Flex, Grid, Spinner } from "@sanity/ui";
 import { styled } from "styled-components";
 import { FeedbackList } from "./FeedbackList";
+import { FeedbackEdit } from "./FeedbackEdit";
 
 const ScreenHeightCard = styled(Card)`
   height: 100vh;
@@ -32,7 +33,11 @@ export function Feedback() {
         </Suspense>
       </ScreenHeightCard>
       <ScreenHeightCard borderLeft columnStart={3} columnEnd={6}>
-        {/* TODO: Add <FeedbackEdit /> form */}
+        <Suspense fallback={<Loading />}>
+          {selectedFeedback ? (
+            <FeedbackEdit selectedFeedback={selectedFeedback} />
+          ) : null}
+        </Suspense>
       </ScreenHeightCard>
     </Grid>
   );
