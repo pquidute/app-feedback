@@ -1,5 +1,8 @@
+import { Suspense } from "react";
 import { type DocumentHandle, useDocuments } from "@sanity/sdk-react";
-import { Stack, Button } from "@sanity/ui";
+import { Stack, Button, Spinner } from "@sanity/ui";
+
+import { FeedbackPreview } from "./FeedbackPreview";
 
 type FeedbackListProps = {
   selectedFeedback: DocumentHandle | null;
@@ -16,9 +19,22 @@ export function FeedbackList({
 
   return (
     <Stack space={2} padding={5}>
-      {data?.map((feedback) => (
-        <pre key={feedback.documentId}>{JSON.stringify(feedback, null, 2)}</pre>
-      ))}
+      {data?.map((feedback) => {
+        const isSelected = selectedFeedback?.documentId === feedback.documentId;
+
+        return (
+          <Button
+            key={feedback.documentId}
+            onClick={() => setSelectedFeedback(feedback)}
+            mode={isSelected ? "ghost" : "bleed"}
+            tone={isSelected ? "primary" : undefined}
+          >
+            <Suspense fallback={<Spinner />}>
+              <FeedbackPreview {...feedback} />
+            </Suspense>
+          </Button>
+        );
+      })}
       {hasMore && <Button onClick={loadMore} text="Load more" />}
     </Stack>
   );
