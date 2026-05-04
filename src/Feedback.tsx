@@ -9,6 +9,14 @@ const ScreenHeightCard = styled(Card)`
   overflow: scroll;
 `;
 
+function Loading() {
+  return (
+    <Flex justify="center" align="center" width="fill" height="fill">
+      <Spinner />
+    </Flex>
+  );
+}
+
 export function Feedback() {
   const [selectedFeedback, setSelectedFeedback] =
     useState<DocumentHandle | null>(null);
@@ -27,13 +35,5 @@ export function Feedback() {
         {/* TODO: Add <FeedbackEdit /> form */}
       </ScreenHeightCard>
     </Grid>
-  );
-}
-
-function Loading() {
-  return (
-    <Flex justify="center" align="center" width="fill" height="fill">
-      <Spinner />
-    </Flex>
   );
 }
