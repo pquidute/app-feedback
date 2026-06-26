@@ -2,8 +2,8 @@ import { type SanityConfig } from "@sanity/sdk";
 import { SanityApp } from "@sanity/sdk-react";
 import { Flex, Spinner } from "@sanity/ui";
 import { SanityUI } from "./SanityUI";
-import { Feedback } from "./Feedback";
-import { FeedbackEvents } from "./FeedbackEvents";
+import { Feedback } from "./component/Feedback";
+import { FeedbackEvents } from "./component/FeedbackEvents";
 
 function App() {
   // apps can access many different projects or other sources of data
@@ -27,7 +27,7 @@ function App() {
       <SanityApp config={sanityConfigs} fallback={<Loading />}>
         <Feedback />
         <FeedbackEvents />
-        </SanityApp>
+      </SanityApp>
     </SanityUI>
   );
 }
