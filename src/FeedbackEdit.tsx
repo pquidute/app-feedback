@@ -4,6 +4,7 @@ import { StatusBadge } from "./StatusBadge";
 import { Sentiment } from "./Sentiment";
 import { Notes } from "./Notes";
 import { Actions } from "./Actions";
+import { Assignee } from "./Assignee";
 
 type FeedbackEditProps = {
   selectedFeedback: DocumentHandle;
@@ -60,6 +61,7 @@ export function FeedbackEdit({ selectedFeedback }: FeedbackEditProps) {
             >
               <Actions handle={selectedFeedback} />
             </Flex>
+            <Assignee value={assignee} handle={selectedFeedback} />
           </Stack>
         </Card>
       </Card>
